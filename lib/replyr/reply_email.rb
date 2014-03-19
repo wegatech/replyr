@@ -1,3 +1,5 @@
+require 'email_reply_parser'
+
 module Replyr
   class ReplyEmail
     attr_accessor :to, :from, :subject, :body, :attached_files
