@@ -2,9 +2,9 @@
 
 Replyr lets you receive and process reply emails with Rails. And with ease!
 
-#### Example
+#### Here's an example
 
-A User gets an email notification about a comment being posted on his page. No he answers this email directly from his email client with a followup comment. Replyr receives the anwser and creates a new comment on his page.
+> A User gets an email notification about a comment being posted on his page. Now he answers this email directly from his email client with a followup comment. Replyr receives the anwser and creates a new comment on his page.
 
 #### How does this work?
 
@@ -12,18 +12,18 @@ Replyr generates a special `reply_to` email address which is unique to the user 
 
 reply-comment-12-56-01ce26dc69094af9246ea7e7ce9970aff2b81cc9@example.com
 
-This address will be set as the reply_to address in your outgoing email. When the user answers the email, the message will be sent to this unique address and Replyr will be able to handle it accordingly. Replyr will check for the validity of the reply email and then pass it to your custom code, which will then create a new comment.
+This address will be set as the reply_to address in the outgoing email from the rails app. When the user answers the email, the message will be sent to this address and Replyr will be able to handle it accordingly. It will check the mail for validity and then pass it to your custom code, which will then create a new comment.
 
 #### How do the emails get into my app?
 
-Replyr uses the awesome [Mailman Gem](https://github.com/titanous/mailman) to receive the reply emails. It can be configured to get the emails via Maildir, from a POP3- or from an IMAP-Server. It runs as a background daemon and observes your email directory or polls your email server for new emails. See the documentation of Mailman on how to set it up.
+Replyr uses the awesome [Mailman Gem](https://github.com/titanous/mailman) to receive the reply emails. It can be configured to get the emails via Maildir, from a POP3- or from an IMAP-Server. It runs as a background daemon and observes your email directory or polls your email server for new emails. Take a look at the documentation to find out about its features and how to set it up:
 
 https://github.com/titanous/mailman
 
 ## Requirements
 
-  - Ruby >= 1.9.2
-  - Rails 3 >= 3.1 or Rails 4
+  - Ruby >= 1.9.3
+  - Rails 3 >= 3.1 or Rails 4.x
 
 ## Installtion
 
