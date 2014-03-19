@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency 'em-http-request'
-  #s.add_dependency 'mailman', git: 'git://github.com/titanous/mailman'
+  #s.add_dependency 'mailman', git: 'git://github.com/titanous/mailman' # out of date, waiting for release
   s.add_dependency 'daemons'
   
   s.add_development_dependency 'rails', '~> 3.2.13'
