@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 require_relative '../test_helper'
+require 'mail'
 
 describe Replyr::ReplyEmail do
   it 'parses plain message object correctly' do
