@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'rubygems'  
+require "bundler/setup"  
+require 'daemons'
+
+options = {
+  app_name: "mailman",
+  dir_mode: :normal,
+  dir: "tmp/pids",
+}
+
+Daemons.run('script/mailman_server', options) 

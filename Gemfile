@@ -12,3 +12,4 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+gem 'mailman', git: 'git://github.com/titanous/mailman'

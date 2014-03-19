@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+require "rubygems"  
+require "bundler/setup"  
+require "mailman"
+
+ENV["RAILS_ENV"] ||= "development"
+require File.expand_path("../../config/environment.rb", __FILE__)
+
+Mailman.config.ignore_stdin = true  
+Mailman.config.logger = Logger.new File.expand_path("../../log/mailman_#{Rails.env}.log", __FILE__)
+
+# Use Maildir
+#
+Mailman.config.maildir = "~/Maildir"
+
+# Use Pop3
+#
+# Mailman.config.pop3 = {
+#   server: 'pop.gmail.com', port: 995, ssl: true,
+#   username: USERNAME,
+#   password: PASSWORD
+# }
+
+# Use IMAP
+#
+# Mailman.config.imap = {
+#   server: 'imap.gmail.com', 
+#   port: 993, # usually 995, 993 for gmail
+#   ssl: true,
+#   username: USERNAME,
+#   password: PASSWORD,
+# }
+
+Mailman::Application.run do  
+
+  # DO NOT CHANGE. Replyr Route for processing reply emails
+  to Ryplyr.mailman_route do
+    Ryplyr::ReplyEmail.process(message)
+  end
+  
+  # add your custom routes (independent of Replyr) here
+  # to 'support%@example.org' do
+  #   # ...
+  # end
+  # 
+  # default do
+  #   # ...
+  # end
+
+end
