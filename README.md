@@ -72,7 +72,7 @@ The `handle_reply` method takes a block with 4 parameters. The first one is the 
 
 What you put in the `handle_reply` block is completely up to you. In this example we are just creating a new comment, but you could also handle attached files by passing them to carrierwave, etc.
 
-#### Make your mailer send the `reply_to` address
+#### Make your mailers send the `reply_to` address
 
 To add the unique reply address to your outgoing emails and make them 'replyable', add the reply_to option to your mailers methods:
 
