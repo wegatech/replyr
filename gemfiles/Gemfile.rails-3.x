@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 gemspec path: '..'
 
-gem "rails", '~>3'
+gem "rails", '~> 3.2.16'

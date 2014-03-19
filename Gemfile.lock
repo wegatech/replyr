@@ -20,7 +20,6 @@ PATH
   specs:
     replyr (0.0.1)
       daemons
-      em-http-request
 
 GEM
   remote: https://rubygems.org/
@@ -52,26 +51,14 @@ GEM
     activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
-    addressable (2.3.5)
     arel (3.0.3)
     builder (3.0.4)
     celluloid (0.15.2)
       timers (~> 1.1.0)
-    cookiejar (0.3.2)
     daemons (1.1.9)
-    em-http-request (1.1.2)
-      addressable (>= 2.3.4)
-      cookiejar
-      em-socksify (>= 0.3)
-      eventmachine (>= 1.0.3)
-      http_parser.rb (>= 0.6.0)
-    em-socksify (0.3.0)
-      eventmachine (>= 1.0.0.beta.4)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     ffi (1.9.3)
     hike (1.2.3)
-    http_parser.rb (0.6.0)
     i18n (0.6.9)
     journey (1.0.4)
     json (1.8.1)

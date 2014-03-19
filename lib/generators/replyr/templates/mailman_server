@@ -34,8 +34,8 @@ Mailman.config.maildir = "~/Maildir"
 Mailman::Application.run do  
 
   # DO NOT CHANGE. Replyr Route for processing reply emails
-  to Ryplyr.mailman_route do
-    Ryplyr::ReplyEmail.process(message)
+  to Replyr.mailman_route do
+    Replyr::ReplyEmail.process(message)
   end
   
   # add your custom routes (independent of Replyr) here

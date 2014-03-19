@@ -2,7 +2,7 @@
 #
 
 # Set the host name for your reply email addresses
-Ryplr.config.host = "example.com"
+Replyr.config.host = "example.com"
 
 # Set a secure secret token to be used for salting the email-address 
-Ryplr.config.secret = "<%= defined?(SecureRandom) ? SecureRandom.hex(32) : ActiveSupport::SecureRandom.hex(32) %>"
+Replyr.config.secret = "<%= defined?(SecureRandom) ? SecureRandom.hex(32) : ActiveSupport::SecureRandom.hex(32) %>"

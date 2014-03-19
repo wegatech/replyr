@@ -13,14 +13,15 @@ Gem::Specification.new do |s|
   s.summary     = "Receive emails with Rails"
   s.description = "Receive and parse incoming emails with ease"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.files       = Dir["{app,config,lib,test}/**/*", "[A-Z]*", "init.rb"] - ["Gemfile.lock"]
+  s.require_path = "lib"
 
-  s.add_dependency 'em-http-request'
   #s.add_dependency 'mailman', git: 'git://github.com/titanous/mailman' # out of date, waiting for release
   s.add_dependency 'daemons'
   
   s.add_development_dependency 'rails', '~> 3.2.13'
   s.add_development_dependency 'minitest', '< 5.0.0'
   s.add_development_dependency "sqlite3"
+  
+  s.required_rubygems_version = ">= 1.3.4"
 end
