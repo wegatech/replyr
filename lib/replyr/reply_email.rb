@@ -6,7 +6,7 @@ module Replyr
       self.to = mail.to.first
       self.from = mail.from.first
       self.subject = mail.subject
-      self.body = mail.multipart? ? mail.text_part.decoded : mail.body.decoded
+      self.body = mail.decoded # Returns the decoded text from the mail in UTF-8 format
 
       # Extract Attachments and store as StringIO in attached_files
       # can later be processed by e.g. carrierwave
@@ -24,9 +24,7 @@ module Replyr
       reply_mail = new(mail)
       reply_mail.process
     end
-  
-    private
-  
+
     # Checks if this incoming mail is a reply email
     #
     def is_reply_email?
@@ -34,11 +32,7 @@ module Replyr
     end
 
     def stripped_body
-      # Handle invalid Byte Sequences
-      body_utf8 = body.encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
-    
-      doc_text = body_utf8.gsub(/<[^>]*>/ui,'')
-      EmailReplyParser.parse_reply(doc_text, from).to_s.force_encoding("UTF-8")
+      EmailReplyParser.parse_reply(body, from).to_s.force_encoding("UTF-8")
     end
   
     def process
@@ -49,7 +43,6 @@ module Replyr
           # no valid reply_address
         end
       end
-      
     end
   
   end

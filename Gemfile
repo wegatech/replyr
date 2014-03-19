@@ -13,3 +13,4 @@ gemspec
 # To use debugger
 # gem 'debugger'
 gem 'mailman', git: 'git://github.com/titanous/mailman'
+gem 'email_reply_parser', git: 'git://github.com/rudirocks/email_reply_parser'

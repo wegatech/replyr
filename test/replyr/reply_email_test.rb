@@ -1,10 +1,17 @@
 require_relative '../test_helper'
 
 describe Replyr::ReplyEmail do
-  it 'clears out invalid UTF-8 bytes' do
-    body = "hello joel\255".force_encoding('UTF-8')
+  it 'parses plain message object correctly' do
+    mail = Mail.read('test/support/emails/reply_plain.eml')
+    reply_email = Replyr::ReplyEmail.new(mail)
+    assert_equal "wursttheke@me.com", reply_email.from
+    assert_equal "Das ist wunderschön", reply_email.stripped_body
+  end
 
-    # replace_name(body, 'hank').should_not raise_error(ArgumentError)
-    # replace_name(body, 'hank').should eq "hello hank"
+  it 'parses multipart message object correctly' do
+    mail = Mail.read('test/support/emails/reply_plain.eml')
+    reply_email = Replyr::ReplyEmail.new(mail)
+    assert_equal "wursttheke@me.com", reply_email.from
+    assert_equal "Das ist wunderschön", reply_email.stripped_body
   end
 end
