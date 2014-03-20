@@ -1,4 +1,5 @@
 require 'mailman'
+require 'email_reply_parser/email_reply_parser'
 require "replyr/config"
 require "replyr/reply_email"
 require "replyr/reply_address"

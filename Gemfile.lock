@@ -1,15 +1,9 @@
-GIT
-  remote: git://github.com/rudirocks/email_reply_parser
-  revision: d89e514aa7f0cfe9a3d0c0b84301b973da079d97
-  specs:
-    email_reply_parser (0.6.0)
-
 PATH
   remote: .
   specs:
     replyr (0.0.1)
       daemons
-      mailman
+      mailman (>= 0.7.0)
 
 GEM
   remote: https://rubygems.org/
@@ -121,7 +115,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  email_reply_parser!
   minitest (< 5.0.0)
   rails (~> 3.2.13)
   replyr!

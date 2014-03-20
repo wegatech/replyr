@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files       = Dir["{app,config,lib,test}/**/*", "[A-Z]*", "init.rb"] - ["Gemfile.lock"]
   s.require_path = "lib"
 
-  s.add_dependency 'mailman'#, git: 'git://github.com/titanous/mailman' # out of date, waiting for release
+  s.add_dependency 'mailman', '>= 0.7.0'
   s.add_dependency 'daemons'
   
   s.add_development_dependency 'rails', '~> 3.2.13'
