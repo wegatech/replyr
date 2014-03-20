@@ -1,3 +1,5 @@
+require 'openssl'
+
 module Replyr
   class ReplyAddress
     attr_accessor :model, :user
@@ -62,7 +64,11 @@ module Replyr
       model_id = id_from_model(model)
       model_name = normalized_model_name(model)
 
-      Digest::SHA1.hexdigest("#{user_id}-#{model_name}-#{model_id}-#{Replyr.config.secret}")
+      OpenSSL::HMAC.hexdigest(
+        OpenSSL::Digest.new('sha1'),
+        Replyr.config.secret,
+        "#{user_id}-#{model_name}-#{model_id}"
+      )
     end
     
     # Model name by be namespaced (e.g. MyApp::Comment)
