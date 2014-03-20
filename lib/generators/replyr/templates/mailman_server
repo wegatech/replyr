@@ -34,7 +34,7 @@ Mailman.config.maildir = "~/Maildir"
 Mailman::Application.run do  
 
   # DO NOT CHANGE. Replyr Route for processing reply emails
-  to Replyr.mailman_route do
+  to Replyr.address_pattern do
     Replyr::ReplyEmail.process(message)
   end
   

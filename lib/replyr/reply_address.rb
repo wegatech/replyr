@@ -14,7 +14,7 @@ module Replyr
     # if it's invalid.
     #
     def self.new_from_address(address)
-      parts = get_address_parts(address)
+      parts = get_parsed_address(address)
 
       model_class = class_from_normalized_model_name(parts[:model_name])
       model = model_class.find(parts[:model_id])
@@ -38,14 +38,13 @@ module Replyr
     # Split the reply email address. It has the following format:
     # reply-comment-12-56-01ce26dc69094af9246ea7e7ce9970aff2b81cc9@reply.example.com
     #
-    def self.get_address_parts(address)
-      local_part, host = address.split("@")
-      keys = [:prefix, :model_name, :model_id, :user_id, :token, :host]
-      values = [local_part.split("-"), host].flatten
-      if values.size != keys.size 
+    def self.get_parsed_address(address)
+      parsed = Mailman::Route::StringMatcher.new(Replyr.address_pattern).match(address)
+
+      if parsed.nil?
         raise ArgumentError, "Malformed reply email address."
       else
-        Hash[keys.zip values]
+        parsed.first # return Hash part
       end
     end
     

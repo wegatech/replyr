@@ -1,3 +1,4 @@
+require 'mailman'
 require "replyr/config"
 require "replyr/reply_email"
 require "replyr/reply_address"
@@ -16,9 +17,9 @@ module Replyr
       @logger = (defined?(Rails) && Rails.logger) ? Rails.logger : Logger.new(STDOUT)
     end
     
-    def replyr_route
-      "#{config.prefix}-%idsandtoken%@#{config.host}"
+    def address_pattern
+      "#{config.prefix}-%model_name%-%model_id%-%user_id%-%token%@#{config.host}"
     end
-      
+    
   end
 end
