@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    replyr (0.0.1)
+    replyr (0.0.2)
       daemons
       mailman (>= 0.7.0)
 
