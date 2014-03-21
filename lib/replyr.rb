@@ -21,6 +21,7 @@ module Replyr
     def address_pattern
       "#{config.prefix}-%model_name%-%model_id%-%user_id%-%token%@#{config.host}"
     end
+    alias_method :mailman_route, :address_pattern
     
   end
 end
