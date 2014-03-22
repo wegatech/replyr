@@ -1,3 +1,8 @@
+## v0.0.4
+
+- Monkeypatch mailman, because of invalid dependency (listen gem)
+- Fix bug concerning decoding body of a message
+
 ## v0.0.3
 
 Fix outdated mailman dependency (gem listen, "< 2.0.0")
