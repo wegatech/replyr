@@ -1,6 +1,6 @@
 module Replyr
   class ReplyEmail
-    attr_accessor :to, :from, :subject, :body, :attached_files
+    attr_accessor :to, :from, :subject, :body, :files
   
     def initialize(mail)
       self.to = mail.to.first
@@ -8,10 +8,10 @@ module Replyr
       self.subject = mail.subject
       self.body = mail.multipart? ? mail.text_part.decoded : mail.decoded
 
-      # Extract Attachments and store as StringIO in attached_files
+      # Extract Attachments and store as StringIO in files
       # can later be processed by e.g. carrierwave
       #
-      self.attached_files = mail.attachments.map do |attachment|
+      self.files = mail.attachments.map do |attachment|
         file = StringIO.new(attachment.decoded)
         file.class.class_eval { attr_accessor :original_filename, :content_type }
         file.original_filename = attachment.filename
