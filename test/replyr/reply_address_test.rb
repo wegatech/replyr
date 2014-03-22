@@ -40,7 +40,7 @@ describe Replyr::ReplyAddress do
   
   describe '#token_valid?' do
     before do
-      @address = Replyr::ReplyAddress.new(User.create, Comment.create)
+      @address = Replyr::ReplyAddress.new(Comment.create, User.create)
     end
 
     it 'return true if the passed token is valid' do
@@ -54,7 +54,7 @@ describe Replyr::ReplyAddress do
 
   describe '#ensure_valid_token!' do
     before do
-      @address = Replyr::ReplyAddress.new(User.create, Comment.create)
+      @address = Replyr::ReplyAddress.new(Comment.create, User.create)
     end
 
     it 'throws exception if token is invalid' do
