@@ -1,3 +1,7 @@
+## v0.0.6
+
+- Fix bug in email_reply and add more tests
+
 ## v0.0.5
 
 - Capture exceptions thrown during message creation
