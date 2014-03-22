@@ -6,7 +6,7 @@ module Replyr
       self.to = mail.to.first
       self.from = mail.from.first
       self.subject = mail.subject
-      self.body = mail.decoded # Returns the decoded text from the mail in UTF-8 format
+      self.body = mail.multipart? ? mail.text_part.decoded : mail.decoded
 
       # Extract Attachments and store as StringIO in attached_files
       # can later be processed by e.g. carrierwave
