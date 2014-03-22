@@ -29,15 +29,42 @@ describe Replyr::ReplyAddress do
       assert_equal user.class.name, address.user.class.name
     end
     
-    it 'raises ArgumentError if email address is malformed (no reply email)' do
-      assert_raises ArgumentError do
-        Replyr::ReplyAddress.new_from_address("malformed@example.com")
-      end
+    it 'return nil if email address is malformed (no reply email)' do
+      assert_equal nil, Replyr::ReplyAddress.new_from_address("malformed@example.com")
     end
     
     it 'returns nil if addreess is invalid' do
-      address = Replyr::ReplyAddress.new_from_address("reply-comment-1-1-wrongtoken@example.com")
-      assert_equal nil, address
+      assert_equal nil, Replyr::ReplyAddress.new_from_address("reply-comment-1-1-wrongtoken@example.com")
+    end
+  end
+  
+  describe '#token_valid?' do
+    before do
+      @address = Replyr::ReplyAddress.new(User.create, Comment.create)
+    end
+
+    it 'return true if the passed token is valid' do
+      assert_equal true, @address.token_valid?(@address.token)
+    end
+
+    it 'return false if the passed token is valid' do
+      assert_equal false, @address.token_valid?("wrong_token")
+    end
+  end
+
+  describe '#ensure_valid_token!' do
+    before do
+      @address = Replyr::ReplyAddress.new(User.create, Comment.create)
+    end
+
+    it 'throws exception if token is invalid' do
+      assert_raises RuntimeError do
+        @address.ensure_valid_token!("wrong_token")
+      end
+    end
+
+    it 'throws exception if token is invalid' do
+      assert_equal nil, @address.ensure_valid_token!(@address.token)
     end
   end
   

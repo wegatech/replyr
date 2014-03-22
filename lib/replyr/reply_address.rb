@@ -23,18 +23,21 @@ module Replyr
       user = Replyr.config.user_class.find(parts[:user_id])
 
       address = new(model, user)
-      if address.token_valid?(parts[:token])
-        address
-      else
-        Replyr.logger.warn "Reply email address invalid."
-        nil
-      end
+      address.ensure_valid_token!(parts[:token])
+      address
+    rescue
+      Replyr.logger.warn "Reply email address invalid."
+      nil
     end
     
     # Check if a given token is valid
     #
     def token_valid?(token)
       token == self.token
+    end
+    
+    def ensure_valid_token!(token)
+      raise(RuntimeError, "Token invalid.") unless token_valid?(token)
     end
     
     # Split the reply email address. It has the following format:
