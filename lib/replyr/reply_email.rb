@@ -38,7 +38,7 @@ module Replyr
     def process
       if is_reply_email?
         if reply_address = ReplyAddress.new_from_address(to)
-          reply_address.model.handle_reply(reply_address.user, body, files)
+          reply_address.model.handle_reply(reply_address.user, stripped_body, files)
           true
         else
           false
