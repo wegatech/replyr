@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_dependency 'mailman', '>= 0.7.0'
-  s.add_dependency 'listen', '< 2.0.0' # mailman does not work with listen >2.0.0. wating for new release
+  s.add_dependency 'listen', '~> 2.7.1' # remove this line when mailman fixes dependency issue
   s.add_dependency 'daemons'
   
   s.add_development_dependency 'rails', '~> 3.2.13'

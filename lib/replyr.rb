@@ -6,6 +6,9 @@ require "replyr/reply_address"
 require "replyr/handle_reply"
 require 'replyr/engine'
 
+# Monkey Patch broken listen dependency in mailman v0.7.0
+require 'mailman_monkey_patch' if Mailman::VERSION == "0.7.0"
+
 module Replyr
   class << self
     attr_accessor :config, :logger
