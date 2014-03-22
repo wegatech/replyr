@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Philipp Wüllner"]
   s.email       = ["wursttheke@me.com"]
   s.homepage    = "http://www.github.com/wursttheke/replyr"
-  s.summary     = "Receive emails with Rails"
-  s.description = "Receive and parse incoming emails with ease"
+  s.summary     = "Receive reply emails with Rails"
+  s.description = "Receive and parse incoming reply emails with ease"
 
   s.files       = Dir["{app,config,lib,test}/**/*", "[A-Z]*", "init.rb"] - ["Gemfile.lock"]
   s.require_path = "lib"
