@@ -1,3 +1,7 @@
+## v0.0.5
+
+- Capture exceptions thrown during message creation
+
 ## v0.0.4
 
 - Monkeypatch mailman, because of invalid dependency (listen gem)
