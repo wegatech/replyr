@@ -1,3 +1,7 @@
+## v0.0.7
+
+- Process the stripped body (signature removed)
+
 ## v0.0.6
 
 - Fix bug in email_reply and add more tests
