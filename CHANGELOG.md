@@ -1,5 +1,9 @@
 ## v0.0.7
 
+- Add handling of bounce emails
+
+## v0.0.7
+
 - Process the stripped body (signature removed)
 
 ## v0.0.6
