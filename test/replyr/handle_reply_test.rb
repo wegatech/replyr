@@ -2,7 +2,7 @@ require_relative '../test_helper'
 
 setup_database
 
-describe Replyr::HandleReply do
+describe Replyr::HandleBounce do
   describe '#reply_address_object_for_user' do
     it 'returns reply address object' do
       @user1 = User.create

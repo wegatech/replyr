@@ -60,7 +60,7 @@ describe Replyr::Email do
       assert_equal false, email.process
     end
     
-    it "processes mail if it's valid and return true" do
+    it "processes reply mail if it's valid and return true" do
       address = Replyr::ReplyAddress.new(Comment.create, User.create).address
       mail = Mail.read('test/replyr/emails/reply_plain.eml')
       mail.to = address # set correct address
@@ -72,6 +72,21 @@ describe Replyr::Email do
       assert_equal true, email.process
       assert_equal comment_count + 1, Comment.count
     end
+
+    it "processes bounce mail if it's valid and return true" do
+      user = User.create(email: "test@example.com")
+      address = Replyr::BounceAddress.new(user).address
+      mail = Mail.read('test/replyr/emails/bounce_530.eml')
+      mail.to = address # set correct address
+      email = Replyr::Email.new(mail)
+
+      assert_equal true, email.is_bounce_email?
+      assert_equal false, user.email_invalid?
+      assert_equal true, email.process
+      assert_equal true, user.reload.email_invalid?
+    end
+
+
   end
   
 

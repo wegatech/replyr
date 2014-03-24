@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :comments
   
   handle_bounce do |user, email|
-    user.update_attribute(:email_valid, false)
+    user.update_attributes({email_invalid: true})
   end
 
 end

@@ -16,7 +16,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 def setup_database
   ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS users")
-  ActiveRecord::Base.connection.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
+  ActiveRecord::Base.connection.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, email TEXT, email_invalid BOOLEAN)")
 
   ActiveRecord::Base.connection.execute("DROP TABLE IF EXISTS comments")
   ActiveRecord::Base.connection.execute("CREATE TABLE comments (id INTEGER PRIMARY KEY, body TEXT, user_id INTEGER)")
