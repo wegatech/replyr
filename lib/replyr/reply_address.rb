@@ -25,8 +25,7 @@ module Replyr
       address = new(model, user)
       address.ensure_valid_token!(parts[:token])
       address
-    rescue #Exception => e
-      #puts e
+    rescue
       Replyr.logger.warn "Reply email address invalid."
       nil
     end
