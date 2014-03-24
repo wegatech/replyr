@@ -8,6 +8,7 @@ module Replyr
 
     initializer "replyr.activerecord" do
       ActiveRecord::Base.send :extend, HandleReply::ClassMethods
+      ActiveRecord::Base.send :extend, HandleBounce::ClassMethods
     end
 
   end

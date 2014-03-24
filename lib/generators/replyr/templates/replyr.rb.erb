@@ -1,8 +1,17 @@
 # Configuration for Replyr
 #
 
-# Set the host name for your reply email addresses
-Replyr.config.host = "example.com"
-
 # Set a secure secret token to be used for salting the email-address 
 Replyr.config.secret = "<%= defined?(SecureRandom) ? SecureRandom.hex(32) : ActiveSupport::SecureRandom.hex(32) %>"
+
+# Set the host name for your reply email addresses
+Replyr.config.reply_host = "example.com"
+
+# Set the host name for your bounce email addresses
+Replyr.config.bounce_host = "example.com"
+
+# Set custom prefix for your reply email addresses (default: "reply")
+# Replyr.config.reply_prefix = "reply"
+
+# Set custom prefix for your bounce email addresses (default: "bounce")
+# Replyr.config.bounce_prefix = "bounce"

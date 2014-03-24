@@ -1,8 +1,9 @@
 module Replyr
-  class ReplyEmail
-    attr_accessor :to, :from, :subject, :body, :files
+  class Email
+    attr_accessor :to, :from, :subject, :body, :files, :mail
   
     def initialize(mail)
+      self.mail = mail
       self.to = mail.to.first
       self.from = mail.from.first
       self.subject = mail.subject
@@ -28,15 +29,30 @@ module Replyr
     # Checks if this incoming mail is a reply email
     #
     def is_reply_email?
-      to.starts_with?(Replyr.config.prefix)
+      to.starts_with?(Replyr.config.reply_prefix)
     end
 
     def stripped_body
       EmailReplyParser.parse_reply(body, from).to_s.force_encoding("UTF-8")
     end
   
+    def is_bounce_email?
+      mail.bounced? || false
+    end
+    
+    def failed_permanently?
+      !mail.retryable? || false
+    end
+  
     def process
-      if is_reply_email?
+      if is_bounce_email?
+        if bounce_address = BounceAddress.new_from_address(to)
+          bounce_address.model.handle_bounce(mail.final_recipient)
+          true
+        else
+          false
+        end
+      elsif is_reply_email?
         if reply_address = ReplyAddress.new_from_address(to)
           reply_address.model.handle_reply(reply_address.user, stripped_body, files)
           true

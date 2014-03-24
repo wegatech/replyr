@@ -1,17 +1,30 @@
 module Replyr
   class Config
-    attr_accessor :prefix, :host, :secret, :user_class
+    attr_accessor :reply_prefix, 
+                  :reply_host, 
+                  :bounce_prefix,
+                  :bounce_host,
+                  :secret, 
+                  :user_class
     
-    def prefix
-      @prefix || "reply"
+    def reply_prefix
+      @reply_prefix || "reply"
+    end
+
+    def bounce_prefix
+      @bounce_prefix || "bounce"
     end
     
     def user_class
       @user_class || User
     end
     
-    def host
-      @host || (raise RuntimeError, "Replyr.config.host is nil. Please set a host in an initializer.")
+    def reply_host
+      @reply_host || (raise RuntimeError, "Replyr.config.reply_host is nil. Please set a host in an initializer.")
+    end
+
+    def bounce_host
+      @bounce_host || (raise RuntimeError, "Replyr.config.bounce_host is nil. Please set a host in an initializer.")
     end
     
     def secret

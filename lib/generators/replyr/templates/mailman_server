@@ -34,11 +34,11 @@ Mailman.config.maildir = "~/Maildir"
 Mailman::Application.run do  
 
   # DO NOT CHANGE. Replyr Route for processing reply emails
-  to Replyr.address_pattern do
-    Replyr::ReplyEmail.process(message)
+  to Replyr.route do
+    Replyr.process(message)
   end
   
-  # add your custom routes (independent of Replyr) here
+  # add your custom mailman routes (independent of Replyr) here
   # to 'support%@example.org' do
   #   # ...
   # end

@@ -45,7 +45,7 @@ $ rails g replyr:install
 Open up `config/initializers/replyr.rb` and set the host name of your reply email address.
 
 ```ruby
-Ryplr.config.host = "yourdomain.com"
+Ryplr.config.reply_host = "yourdomain.com"
 ```
 
 #### Setup Mailman Gem
@@ -53,6 +53,8 @@ Ryplr.config.host = "yourdomain.com"
 The Install Generator will already have created a `script/mailman_server` file which boots up the Mailman background job. According to your setup you will have to configure the file to your needs. By default it is setup to observe the `~/Maildir` folder in your home directory.
 
 ## Usage
+
+### Reply Handling
 
 #### Make a model accept replies
 
@@ -65,6 +67,7 @@ class Comment < ActiveRecord::Base
   handle_reply do |comment, user, text, files|
     Comment.create(body: text)
   end
+
 end
 ```
 
@@ -78,15 +81,48 @@ To add the unique reply address to your outgoing emails and make them 'replyable
 
 ```ruby
 class CommentMailer < ActionMailer::Base
+
   def new_comment(user, comment)
-    mail(to: user.email, reply_to: comment.reply_address_for_user(user))
+    mail to: user.email, reply_to: comment.reply_address_for_user(user)
   end
+  
 end
 ```
 
-## Start up
+### Bounce Handling
 
-Start/Stop up the Mailman background worker with the following commands:
+#### Make a model accept bounce emails
+
+Add a `handle_bounce` call to the ActiveRecord model you want to handle your bounce emails on.
+
+```ruby
+class User < ActiveRecord::Base
+
+  handle_bounce do |user, email|
+    # Put your custom bounce handling code here
+    # e.g. mark email as invalid
+    user.update_attribute(:email_valid, false)
+  end
+
+end
+```
+
+#### Update your mailers and set the `return_path`
+
+```ruby
+class CommentMailer < ActionMailer::Base
+  
+  def new_comment(user, comment)
+    mail to: user.email, return_path: user.bounce_address
+  end
+  
+end
+```
+
+
+## Start up the worker
+
+Start/Stop the Mailman background worker with the following commands:
 
 ```bash
 $ RAILS_ENV=production script/mailman_daemon start
