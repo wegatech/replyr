@@ -42,10 +42,11 @@ $ rails g replyr:install
 
 #### Edit initializer 
 
-Open up `config/initializers/replyr.rb` and set the host name of your reply email address.
+Open up `config/initializers/replyr.rb` and set the host names of your reply and bounce email addresses.
 
 ```ruby
 Ryplr.config.reply_host = "yourdomain.com"
+Ryplr.config.bounce_host = "yourdomain.com"
 ```
 
 #### Setup Mailman Gem
