@@ -25,7 +25,7 @@ https://github.com/titanous/mailman
   - Ruby >= 1.9.3
   - Rails 3 >= 3.1 or Rails 4.x
 
-## Installtion
+## Installation
 
 #### Add the gem to your `Gemfile`
 
