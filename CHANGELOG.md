@@ -1,3 +1,7 @@
+## v0.0.8
+
+- Update Mailman Dependency
+
 ## v0.0.7
 
 - Add handling of bounce emails
