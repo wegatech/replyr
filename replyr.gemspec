@@ -16,12 +16,9 @@ Gem::Specification.new do |s|
   s.files       = Dir["{app,config,lib,test}/**/*", "[A-Z]*", "init.rb"] - ["Gemfile.lock"]
   s.require_path = "lib"
 
-  s.add_dependency 'mailman', '>= 0.7.1'
-  s.add_dependency 'daemons'
-  
   s.add_development_dependency 'rails', '~> 3.2.13'
   s.add_development_dependency 'minitest', '< 5.0.0'
   s.add_development_dependency "sqlite3"
-  
+
   s.required_rubygems_version = ">= 1.3.4"
 end
