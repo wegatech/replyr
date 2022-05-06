@@ -1,4 +1,4 @@
-#Replyr [![Build Status](https://travis-ci.org/wursttheke/replyr.png?branch=master)](https://travis-ci.org/wursttheke/replyr)
+# Replyr [![Build Status](https://travis-ci.org/wursttheke/replyr.png?branch=master)](https://travis-ci.org/wursttheke/replyr)
 
 Replyr lets you receive and process reply emails with Rails. And with ease!
 
